@@ -16,3 +16,42 @@
 """
 import socket
 import sys, os 
+
+def Main():
+    IPaddr = socket.gethostbyname(ipaddress) #translate hostname to ip address
+    message = "TEST"
+    bufferSize = 1024
+    port = 4444
+    serverInfo = ((IPaddr, port)) 
+    
+    try: #Attempt to connect to server
+        clientSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        clientSocket.connect(serverInfo)
+        print ('You have successfully connected')
+    except socket.error as err:
+        print('Socket connection error:', err)
+        sys.exit()
+        
+     try:
+        status = clientSocket.recv(bufferSize) #attempt to receive wait message 
+        status = status.decode()
+    except socket.error as msg:
+        print ('Unable to receive message from server: ' + str(msg[0]))
+    
+    connection = True 
+    while connection:
+        try:
+             final = clientSocket.recv(4) #Receieve GO from server
+             final = final.decode() 
+         except Exception as s:
+            print ('Unable to send client input and READY message: ', s)
+            sys.exit(0)
+         if (final == "TEST"):
+             cInput(clientSocket)
+             connection = False
+             clientSocket.close()         
+
+if __name__ == '__main__': #ensures in current module Main 
+    Main()
+else:
+    sys.exit(0)
