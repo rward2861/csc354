@@ -17,3 +17,43 @@
 import socket
 import sys, os 
 
+def Main():
+    connections = [] #create list for client connections 
+    bufferSize = 1024 
+    port = 4444
+    
+    try:
+        serverSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM) #create a server socket 
+    except OSError as e:
+        print ('Socket creation was a failure: ' + e)
+    try:
+        serverSocket.bind((socket.gethostname(), port)) #attempt to bind server socket with hostname and port inputted from client 
+    except socket.error as msg:
+        print('Bind attempt was a failure.  Error code is as follows: ' + str(msg[0]) + ' Message ' + msg[1])
+        sys.exit(0)
+        
+    while True:
+        serverSocket.listen(1) #listen for incoming connections 
+       
+        try:
+            clientConn = serverSocket.accept() #attempt to accept first connection 
+            connections.append(clientConn) #if success, append to clientConn 
+        except socket.error as e:
+            print ('Unable to accept incoming client: ' % format(err.errno, err.strerr))
+            sys.exit(0)
+        try:
+            user1 = connections[0][0].recv(bufferSize) #READY message brought in from client 
+            user1 = user1.decode() 
+        except Exception:
+            print ('Unable to decode message')
+        
+        else: #execute if both sent READY message 
+            final_message = 'TEST'
+            connections[0][0].send(final_message.encode()) #inform client game is ready to start 
+           
+    serverSocket.close() #close socket 
+        
+if __name__ == '__main__': #ensure using main module 
+    Main()
+else:
+    sys.exit(0) 
