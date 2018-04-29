@@ -18,6 +18,7 @@ import socket
 import sys, os 
 
 def Main():
+    ipaddress = "127.0.0.1"
     IPaddr = socket.gethostbyname(ipaddress) #translate hostname to ip address
     message = "TEST"
     bufferSize = 1024
@@ -43,13 +44,13 @@ def Main():
         try:
              final = clientSocket.recv(4) #Receieve GO from server
              final = final.decode() 
-         except Exception as s:
+        except Exception as s:
             print ('Unable to send client input and READY message: ', s)
             sys.exit(0)
-         if (final == "TEST"):
-             cInput(clientSocket)
-             connection = False
-             clientSocket.close()         
+        if (final == "TEST"):
+            cInput(clientSocket)
+            connection = False
+            clientSocket.close()         
 
 if __name__ == '__main__': #ensures in current module Main 
     Main()

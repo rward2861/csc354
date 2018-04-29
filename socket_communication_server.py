@@ -18,6 +18,7 @@ import socket
 import sys, os 
 
 def Main():
+    ipaddress = "127.0.0.1"
     connections = [] #create list for client connections 
     bufferSize = 1024 
     port = 4444
