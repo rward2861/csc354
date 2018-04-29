@@ -42,14 +42,14 @@ def Main():
             print ('Unable to accept incoming client: ' % format(err.errno, err.strerr))
             sys.exit(0)
         try:
-            user1 = connections[0][0].recv(bufferSize) #READY message brought in from client 
+            user1 = connections[0][0].recv(bufferSize) 
             user1 = user1.decode() 
         except Exception:
             print ('Unable to decode message')
         
         else: #execute if both sent READY message 
             final_message = 'TEST'
-            connections[0][0].send(final_message.encode()) #inform client game is ready to start 
+            connections[0][0].send(final_message.encode()) 
            
     serverSocket.close() #close socket 
         
