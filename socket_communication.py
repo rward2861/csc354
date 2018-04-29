@@ -16,5 +16,3 @@
 """
 import socket
 import sys, os 
-
-print ('hello')
