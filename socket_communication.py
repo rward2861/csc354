@@ -32,7 +32,7 @@ def Main():
         print('Socket connection error:', err)
         sys.exit()
         
-     try:
+    try:
         status = clientSocket.recv(bufferSize) #attempt to receive wait message 
         status = status.decode()
     except socket.error as msg:
