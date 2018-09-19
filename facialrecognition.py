@@ -173,7 +173,7 @@ print("Total labels: ", len(labels))
 # In[6]:
 
 #create our LBPH face recognizer 
-face_recognizer = cv2.face.createEigenFaceRecognizer()
+face_recognizer = cv2.face.LBPHFaceRecognizer_create()
 
 #or use EigenFaceRecognizer by replacing above line with 
 #face_recognizer = cv2.face.EigenFaceRecognizer_create()
