@@ -20,7 +20,7 @@ import cv2
 import os 
 import numpy as np
 
-subjects = ["", "Janeel", "Eric", "Misc"]
+subjects = ["", "Richie?", "Janeel", "Steph?"]
 
 
 def detect_face(img):
