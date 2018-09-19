@@ -38,7 +38,7 @@ faces = face_cascade.detectMultiScale(gray, scaleFactor=1.2, minNeighbors=5);
  
 #if no faces are detected then return original img
 if (len(faces) == 0):
-return None, None
+  return None, None
  
 #under the assumption that there will be only one face,
 #extract the face area
@@ -63,8 +63,8 @@ for dir_name in dirs:
  
 #our subject directories start with letter 's' so
 #ignore any non-relevant directories if any
-if not dir_name.startswith("s"):
-continue;
+  if not dir_name.startswith("s"):
+    continue;
  
 #------STEP-2--------
 #extract label number of subject from dir_name
@@ -85,8 +85,8 @@ subject_images_names = os.listdir(subject_dir_path)
 for image_name in subject_images_names:
  
 #ignore system files like .DS_Store
-if image_name.startswith("."):
-continue;
+  if image_name.startswith("."):
+    continue;
  
 #build image path
 #sample image path = training-data/s1/1.pgm
@@ -107,9 +107,9 @@ face, rect = detect_face(image)
 #we will ignore faces that are not detected
 if face is not None:
 #add face to list of faces
-faces.append(face)
+  faces.append(face)
 #add label for this face
-labels.append(label)
+  labels.append(label)
  
 cv2.destroyAllWindows()
 cv2.waitKey(1)
