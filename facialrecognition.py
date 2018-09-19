@@ -45,7 +45,7 @@ def detect_face(img):
   (x, y, w, h) = faces[0]
  
 #return only the face part of the image
-return gray[y:y+w, x:x+h], faces[0]
+  return gray[y:y+w, x:x+h], faces[0]
 
 def prepare_training_data(data_folder_path):
  
