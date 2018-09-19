@@ -51,20 +51,20 @@ def prepare_training_data(data_folder_path):
  
 #------STEP-1--------
 #get the directories (one directory for each subject) in data folder
-dirs = os.listdir(data_folder_path)
+  dirs = os.listdir(data_folder_path)
  
 #list to hold all subject faces
-faces = []
+  faces = []
 #list to hold labels for all subjects
-labels = []
+  labels = []
  
 #let's go through each directory and read images within it
-for dir_name in dirs:
+  for dir_name in dirs:
  
 #our subject directories start with letter 's' so
 #ignore any non-relevant directories if any
-  if not dir_name.startswith("s"):
-    continue;
+    if not dir_name.startswith("s"):
+      continue;
  
 #------STEP-2--------
 #extract label number of subject from dir_name
