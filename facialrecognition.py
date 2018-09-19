@@ -141,21 +141,6 @@ def draw_rectangle(img, rect):
 def draw_text(img, text, x, y):
  cv2.putText(img, text, (x, y), cv2.FONT_HERSHEY_PLAIN, 1.5, (0, 255, 0), 2)
  
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
 #this function recognizes the person in image passed
 #and draws a rectangle around detected face with name of the 
 #subject
