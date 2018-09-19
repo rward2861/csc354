@@ -111,26 +111,26 @@ if face is not None:
 #add label for this face
   labels.append(label)
  
-cv2.destroyAllWindows()
-cv2.waitKey(1)
-cv2.destroyAllWindows()
+  cv2.destroyAllWindows()
+  cv2.waitKey(1)
+  cv2.destroyAllWindows()
  
-return faces, labels
+  return faces, labels
 
 #data will be in two lists of same size
 #one list will contain all the faces
 #and the other list will contain respective labels for each face
-print("Preparing data...")
-faces, labels = prepare_training_data("training-data")
-print("Data prepared")
+  print("Preparing data...")
+  faces, labels = prepare_training_data("training-data")
+  print("Data prepared")
  
 #print total faces and labels
-print("Total faces: ", len(faces))
-print("Total labels: ", len(labels))
+  print("Total faces: ", len(faces))
+  print("Total labels: ", len(labels))
 
-face_recognizer = cv2.face.createEigenFaceRecognizer()
+  face_recognizer = cv2.face.createEigenFaceRecognizer()
 
-face_recognizer.train(faces, np.array(labels))
+  face_recognizer.train(faces, np.array(labels))
 
 def draw_rectangle(img, rect):
  (x, y, w, h) = rect
