@@ -26,7 +26,7 @@ subjects = ["", "Janeel", "Eric", "Misc"]
 #function to detect face using OpenCV
 def detect_face(img):
 #convert the test image to gray scale as opencv face detector expects gray images
-gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+  gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
  
 #load OpenCV face detector, I am using LBP which is fast
 #there is also a more accurate but slow: Haar classifier
@@ -42,7 +42,7 @@ return None, None
  
 #under the assumption that there will be only one face,
 #extract the face area
-x, y, w, h = faces[0]
+(x, y, w, h) = faces[0]
  
 #return only the face part of the image
 return gray[y:y+w, x:x+h], faces[0]
