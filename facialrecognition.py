@@ -235,7 +235,7 @@ def predict(test_img):
     #predict the image using our face recognizer 
     label, confidence = face_recognizer.predict(face)
     #get name of respective label returned by face recognizer
-    label_text = subjects[label]
+    label_text = subjects[label[0]]
     
     #draw a rectangle around face detected
     draw_rectangle(img, rect)
