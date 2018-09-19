@@ -146,19 +146,19 @@ def draw_text(img, text, x, y):
 #subject
 def predict(test_img):
 #make a copy of the image as we don't want to change original image
-img = test_img.copy()
+  img = test_img.copy()
 #detect face from the image
-face, rect = detect_face(img)
+  face, rect = detect_face(img)
  
 #predict the image using our face recognizer 
-label= face_recognizer.predict(face)
+  label= face_recognizer.predict(face)
 #get name of respective label returned by face recognizer
-label_text = subjects[label]
+  label_text = subjects[label]
  
 #draw a rectangle around face detected
-draw_rectangle(img, rect)
+  draw_rectangle(img, rect)
 #draw name of predicted person
-draw_text(img, label_text, rect[0], rect[1]-5)
+  draw_text(img, label_text, rect[0], rect[1]-5)
  
 return img
 
