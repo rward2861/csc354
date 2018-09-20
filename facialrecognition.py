@@ -15,6 +15,11 @@
     - algorithm understands that not all parts of the face are equally important or useful in facial recognition 
     - distinct features are most important (eyes, nose, cheeks, forehead) that have areas of MAXIMUM change 
     - looks at images of people as a whole and tries to extract the components which are relevant, while discarding the rest
+    
+ Background Notes:
+  - A computer program that decides whether an image is a positive image (face image) or negative image (non-face image) is a classifier.
+  - OpenCV provides two classifiers: Haar Classifier (machine learning approach, windows are placed on each picture to calculate a single feature)
+    and LBP Classifier 
 """
 import cv2
 import os 
