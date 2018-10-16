@@ -1,0 +1,65 @@
+/*
+     Name:         Jess Uematsu
+     Project Phase 1
+	 Purpose:	   ---
+     URL:          unixweb.kutztown.edu/~juema940/
+     Course:       CSC 242 - Spring 2017
+     Due Date:     Monday, February 27, 2017
+*/
+h1{font-family: 'Raleway', sans-serif; text-shadow: 4px 4px 4px #aaa;}  
+text2{font-family: 'Raleway', sans-serif;}
+a:link{color: black; background-color: transparent; text-decoration: none;}
+a:visited{color: black; background-color: transparent; text-decoration: none;}
+a:hover{color: black; background-color: none; text-decoration: underline;}
+
+/*
+butt:hover{
+    background-color: #000000;
+	color: white
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+*/
+butt {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #000000;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+butt span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+butt span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+butt:hover span {
+  padding-right: 25px;
+}
+
+butt:hover span:after {
+  opacity: 1;
+  right: 0;
+}
