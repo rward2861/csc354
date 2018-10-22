@@ -1,0 +1,41 @@
+<html>
+  <!-- Gradient background -->
+  <div class = "bg">
+  <br><br>
+  
+  <!-- Tab name -->
+  <title>FiPi Dashboard</title>
+  
+  <!-- References to style sheets -->
+  <link href = "https://fonts.googleapis.com/css?family=Raleway" rel = "stylesheet">
+  <link rel = "stylesheet" type = "text/css" href = "CSS.css">
+  <link rel = "stylesheet" href = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+  
+  <!-- Title at top -->
+  <text2><h1><center>Future Dashboard Page</center></h1></text2>
+  <br><br><br><br><br>
+  
+  <!-- Google Sign-in -->
+  <body><center>
+    <meta name = "google-signin-scope" content = "profile email">
+    <meta name = "google-signin-client_id" content = "523881811204-niaj7nq0lp48m4fj3e8qos9tvd45upgf.apps.googleusercontent.com">
+    <script src = "https://apis.google.com/js/platform.js" async defer></script>
+    <div class = "g-signin2" data-onsuccess = "onSignIn"></div>
+    <script>
+      function onSignIn(googleUser) 
+	  {
+        // Useful data for your client-side scripts:
+        var profile = googleUser.getBasicProfile();
+        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+        console.log('Full Name: ' + profile.getName());
+        console.log('Given Name: ' + profile.getGivenName());
+        console.log('Family Name: ' + profile.getFamilyName());
+        console.log("Image URL: " + profile.getImageUrl());
+        console.log("Email: " + profile.getEmail());
+        // The ID token you need to pass to your backend:
+        var id_token = googleUser.getAuthResponse().id_token;
+        console.log("ID Token: " + id_token);
+      };
+    </script>
+  </center></body>
+</html>
