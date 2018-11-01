@@ -1,12 +1,14 @@
-/*
-     Name:         Jess Uematsu
-     URL:          unixweb.kutztown.edu/~juema940/
-     Course:       CSC 355 - Fall 2018
-*/
+/*********************************************************************
+*** Created By:         Team FiPi                                  ***
+*** Date:               Spring 2017 - Fall 2018                    ***
+*** Purpose:            Login UI for facial recognition app.       ***
+***                     Uses Google API to sign in. Will redirect  ***
+***                     to dashboard.                              ***
+*********************************************************************/
 
-/* Fonts */
-h1{font-family: 'Raleway', sans-serif; text-shadow: 4px 4px 4px #aaa;}  
-text2{font-family: 'Raleway', sans-serif;}
+h1{font-family: Calibri, Candara, Segoe, Segoe UI, Optima, Arial, sans-serif; text-shadow: 4px 4px 4px #aaa;}  
+txt{ font-family: Calibri, Candara, Segoe, Segoe UI, Optima, Arial, sans-serif;}
+
 a:link{color: black; background-color: transparent; text-decoration: none;}
 a:visited{color: black; background-color: transparent; text-decoration: none;}
 a:hover{color: black; background-color: none; text-decoration: underline;}
@@ -21,7 +23,7 @@ a:hover{color: black; background-color: none; text-decoration: underline;}
 }
 
 /* Black button */
-butt {
+butt{
   display: inline-block;
   border-radius: 4px;
   background-color: #000000;
@@ -33,17 +35,17 @@ butt {
   width: 200px;
   transition: all 0.5s;
   cursor: pointer;
-  margin: 5px;
+  margin: 0;
 }
 
-butt span {
+butt span{
   cursor: pointer;
   display: inline-block;
   position: relative;
   transition: 0.5s;
 }
 
-butt span:after {
+butt span:after{
   content: '\00bb';
   position: absolute;
   opacity: 0;
@@ -51,11 +53,61 @@ butt span:after {
   right: -20px;
   transition: 0.5s;
 }
-butt:hover span {
+butt:hover span{
   padding-right: 25px;
 }
 
-butt:hover span:after {
+butt:hover span:after{
   opacity: 1;
   right: 0;
+}
+
+/* Vertical navigation bar */
+body {
+    margin: 0;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 25%;
+    background-color: #f1f1f1;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+}
+
+li b{
+	display: block;
+    color: #000;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+li a{
+    display: block;
+    color: #000;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+.active {
+    background-color: gray;
+    color: white;
+}
+
+li a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+}
+
+/* Rounded box */
+#rcorners{
+    border-radius: 25px;
+    background: white;
+    padding: 20px;
+	margin: 20px;
+    width: 500px;
+    height: 500px; 
 }
