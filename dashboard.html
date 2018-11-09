@@ -1,11 +1,20 @@
 <!----------------------------------------------------------------------------------------------------
 --- Created By:         Team FiPi                                                                  ---
 --- Date:               Spring 2017 - Fall 2018                                                    ---
---- Purpose:            Dashboard UI for facial recognition app. Has links to access account info  ---
----                     view the photo depository. Buttons allow user to upload photo or attempt   ---
----                     to unlock the box.                                                         ---
+--- Purpose:            Dashboard UI for facial recognition app. Displays the name of the user     ---
+---                     pulled from Google API and the status of the lock box.                     ---
+---                     Links include:                                                             ---
+---                       Account: Access account info and view the photo depository.              ---
+---                     Buttons include:                                                           ---
+---                       Upload: Allows user to upload photos into the repository.                ---
+---                       Unlock: Allows user to attempt to unlock the box with a live photo.      ---
 ----------------------------------------------------------------------------------------------------->
 
+<?php
+  session_start();
+  ?>
+	
+<!DOCTYPE html>
 <html>
   <!-- Gradient background -->
   <div class = "bg">
@@ -17,14 +26,15 @@
   <link rel = "stylesheet" type = "text/css" href = "CSS.css">
   <link rel = "stylesheet" href = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
+  <!-- Vertical navigation bar -->
   <ul><txt><h3>
   <li><center><img src = "LogoPic2.PNG" style = "width: 75px; height: 87px;"></center><br>
   <div class = "active"><b>Welcome to FiPi</b></div></li>
-  <li><a href="account.html">Account</a></li>
-  <li><a href="photo_rep.html">Photo Repository</a></li>
-  <li><br><br><b><center><butt><span>Upload</span></butt></center></b></li>
-  <li><br><b><center><butt><span>Unlock</span></butt></center></b></li>
+  <li><a href = "account.html">Account</a></li><br><br><br>
+  <li><center><butt><span onclick = "location.href = 'upload.html'">Upload</span></butt></center></li><br><b>
+  <li><center><butt><span onclick = "location.href = 'unlock.html'">Unlock</span></butt></center></li>
   <li><b><center>
+  <!-- Google button -->
 	<br>
     <meta name = "google-signin-scope" content = "profile email">
     <meta name = "google-signin-client_id" content = "523881811204-niaj7nq0lp48m4fj3e8qos9tvd45upgf.apps.googleusercontent.com">
@@ -45,11 +55,31 @@
         var id_token = googleUser.getAuthResponse().id_token;
         console.log("ID Token: " + id_token);
       };
-    </center></b></script></li></h3></txt></ul>
-  <br>
-  <div style="margin-left:25%;padding:1px 16px;height:1000px;">
+    </center></b></script>
+	<a href = "#" onclick = "signOut();">Sign out</a>
+	<script>
+	function signOut() {
+		var auth2 = gapi.auth2.getAuthInstance();
+		auth2.signOut().then(function() {
+			console.log('User signed out.');
+		});
+	}
+	</script></li></h3></txt></ul>
   
-  <txt><p id="rcorners">Name:
-  <br><br>Status:</p></txt></div>
+  <!-- Middle text box -->
+  <br>
+  <div style = "margin-left: 28%;">
+
+  <?php
+    //$_SESSION["User"] = profile.getId();
+	//echo "Welcome";
+    ?>
+
+  <h1><gen>Welcome User</gen></h1></div>
+  <div style = "margin-left:25%; padding:1px 16px; height:1000px;">
+  <txt><h3><p id = "rcorners">Dashboard:<br><br><br>
+  Here will be displayed the name of the user pulled from Google API
+  and the status of the lock box.</p></h3></txt></div>
   </div>
+  
 </html>
