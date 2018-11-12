@@ -1,0 +1,162 @@
+<!----------------------------------------------------------------------------------------------------
+--- Created By:         Team FiPi                                                                  ---
+--- Date:               Spring 2017 - Fall 2018                                                    ---
+--- Purpose:            Dashboard UI for facial recognition app. Displays the name of the user     ---
+---                     pulled from Google API and the status of the lock box.                     ---
+---                     Links include:                                                             ---
+---                       Account: Access account info and view the photo depository.              ---
+---                     Buttons include:                                                           ---
+---                       Upload: Allows user to upload photos into the repository.                ---
+---                       Unlock: Allows user to attempt to unlock the box with a live photo.      ---
+----------------------------------------------------------------------------------------------------->
+
+<?php
+  session_start();
+  ?>
+  
+<!DOCTYPE html>
+<html>
+  <!-- Gradient background -->
+  <body background = "{{url_for('static', filename = 'img/bg.png')}}">
+    <br><br>
+   
+  <!-- Tab name -->
+  <title>FiPi Dashboard</title>
+  
+  <!-- References to style sheets -->
+  <link rel = "stylesheet" type = "text/css" href = "{{ url_for('static', filename= 'CSS.css')}}">
+  <link rel = "stylesheet" href = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+  <!-- Vertical navigation bar -->
+  <ul><txt><h3>
+  <li><center><img src = " {{ url_for('static', filename= 'img/LogoPic2.PNG')}}" style = "width: 75px; height: 87px;"></center><br>
+ 
+ <!-- Should I be able to click on this WELCOME TO FIPI? -->
+  <div class = "active"><b>Welcome to FiPi</b></div></li> 
+  <!--  -->
+  
+  <!-- <li><a href="{{url_for('account') }}">Account</a></li><br><br><br> -->
+  <!-- <li><center><butt><span onclick = "location.href = 'upload.html'">Upload</span></butt></center></li><br><b> -->
+  <form method="POST" enctype="multipart/form-data" action="upload.php">
+     <input type="file" name="file">
+     <input type="submit" value="Upload">
+  </form>
+  <li><center><butt><span onclick = "window.location.href='{{ url_for( 'upload' ) }}';">Upload</span></butt></center></li><br><b>
+  <li><center><butt><span onclick = "window.location.href='{{ url_for( 'unlock' ) }}';">Unlock</span></butt></center></li>
+  <script>
+  const fileInput = document.getElementById('file-input');
+
+  fileInput.addEventListener('change', (e) => doSomethingWithFiles(e.target.files));
+  </script>
+  <meta charset="utf-8">
+  <meta content="Display Webcam Stream" name="title">
+  
+  <style>
+  #container {
+    margin: 0px auto;
+    width: 500px;
+    height: 375px;
+    border: 10px #333 solid;
+  }
+#videoElement {
+    width: 500px;
+    height: 375px;
+    background-color: #666;
+  }
+</style>
+<video id="player" controls autoplay></video>
+<button id="capture">Capture</button>
+<canvas id="canvas" width=320 height=240></canvas>
+<script>
+  const player = document.getElementById('player');
+  const canvas = document.getElementById('canvas');
+  const context = canvas.getContext('2d');
+  const captureButton = document.getElementById('capture');
+
+  const constraints = {
+    video: true,
+  };
+
+  captureButton.addEventListener('click', () => {
+    // Draw the video frame to the canvas.
+    context.drawImage(player, 0, 0, canvas.width, canvas.height);
+  });
+
+  // Attach the video stream to the video element and autoplay.
+  navigator.mediaDevices.getUserMedia(constraints)
+    .then((stream) => {
+      player.srcObject = stream;
+    });
+</script>  
+<!--
+<body>
+<div id="container">
+    <video autoplay="true" id="videoElement">
+     
+    </video>
+</div>
+<script>
+  var video = document.querySelector("#videoElement");
+
+  if (navigator.mediaDevices.getUserMedia) {
+      navigator.mediaDevices.getUserMedia({video: true})
+    .then(function(stream){
+      video.srcObject = stream;
+    })
+    .catch(function(err0r){
+      console.log("Unable to display webcam..");
+    })
+  }
+
+</script>
+</body>
+  <li><b><center>
+  <!-- Google button -->
+  <br>
+    <meta name = "google-signin-scope" content = "profile email">
+    <meta name = "google-signin-client_id" content = "523881811204-niaj7nq0lp48m4fj3e8qos9tvd45upgf.apps.googleusercontent.com">
+    <script src = "https://apis.google.com/js/platform.js" async defer></script>
+    <div class = "g-signin2" data-onsuccess = "onSignIn"></div>
+    <script>
+      function onSignIn(googleUser) 
+    {
+        // Useful data for your client-side scripts:
+        var profile = googleUser.getBasicProfile();
+        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+        console.log('Full Name: ' + profile.getName());
+        console.log('Given Name: ' + profile.getGivenName());
+        console.log('Family Name: ' + profile.getFamilyName());
+        console.log("Image URL: " + profile.getImageUrl());
+        console.log("Email: " + profile.getEmail());
+        // The ID token you need to pass to your backend:
+        var id_token = googleUser.getAuthResponse().id_token;
+        console.log("ID Token: " + id_token);
+      };
+    </center></b></script>
+  <a href = "#" onclick = "signOut();">Sign out</a>
+  <script>
+  function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function() {
+      console.log('User signed out.');
+    });
+  }
+  </script></li></h3></txt></ul>
+  
+  <!-- Middle text box -->
+  <br>
+  <div style = "margin-left: 28%;">
+
+  <?php
+    //$_SESSION["User"] = profile.getId();
+  //echo "Welcome";
+    ?>
+
+  <h1><gen>Welcome User</gen></h1></div>
+  <div style = "margin-left:25%; padding:1px 16px; height:1000px;">
+  <txt><h3><p id = "rcorners">Dashboard:<br><br><br>
+  Here will be displayed the name of the user pulled from Google API
+  and the status of the lock box.</p></h3></txt></div>
+  </div>
+  
+</html>
