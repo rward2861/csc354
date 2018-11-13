@@ -1,0 +1,56 @@
+<!----------------------------------------------------------------------
+--- Created By:         Team FiPi                                    ---
+--- Date:               Spring 2017 - Fall 2018                      ---
+--- Purpose:            Login UI for facial recognition app.         ---
+---                     Uses Google API to sign in to app, then      ---
+---                     redirects to the dashboard once signed in.   ---
+----------------------------------------------------------------------->
+
+<html>
+  <!-- Gradient background -->
+  <div class = "bg">
+  <br><br>
+  
+  <!-- Tab name -->
+  <title>FiPi Login</title>
+  
+  <!-- References to style sheets -->
+  <link rel = "stylesheet" type = "text/css" href = "CSS.css">
+  <link rel = "stylesheet" href = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  
+  <!-- Title at top -->
+  <h1><center><gen>Welcome to FiPi</gen></center></h1>
+  <txt><h4><center>The Best Open-Source Security</center></h4></txt>
+  <br><br>
+  
+  <!-- Logo -->
+  <center><img src = "LogoPic2.PNG"></a></center>
+  
+  <br><br>
+  <center><txt><h4>Log in the access the <a href="dashboard.html">dashboard</a></h4></txt></center>
+  <br>
+  
+  <!-- Google Sign-in -->
+  <body><center>
+    <meta name = "google-signin-scope" content = "profile email">
+    <meta name = "google-signin-client_id" content = "13804508255-ek126nfm5stgl45m8ahdp2h809s0s4mh.apps.googleusercontent.com">
+    <script src = "https://apis.google.com/js/platform.js" async defer></script>
+    <div class = "g-signin2" data-onsuccess = "onSignIn"></div>
+    <script>
+      function onSignIn(googleUser) 
+	  {
+        // Useful data for your client-side scripts:
+        var profile = googleUser.getBasicProfile();
+        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+        console.log('Full Name: ' + profile.getName());
+        console.log('Given Name: ' + profile.getGivenName());
+        console.log('Family Name: ' + profile.getFamilyName());
+        console.log("Image URL: " + profile.getImageUrl());
+        console.log("Email: " + profile.getEmail());
+        // The ID token you need to pass to your backend:
+        var id_token = googleUser.getAuthResponse().id_token;
+        console.log("ID Token: " + id_token);
+      };
+    </script>
+  </center></body>
+</html>
