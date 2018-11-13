@@ -1,48 +1,32 @@
-from flask import Flask, redirect, url_for, session, render_template
-
+from flask import Flask, render_template, url_for
 application = Flask(__name__)
 
-#@application.route('/')
-#def profile():
-##  access_token = session.get('access_token')
-#  if access_token is None:
-#  return render_template('profile.html')
-#  else:
-#    return render_template('dashboard.html')
+# application.config['SECRET_KEY'] = 'A89Xb9_2#fPpsko'
+# app.config['SERVER_NAME'] = 'localhost:5000'
+# app.config.from_pyfile('config.cfg')
 
 @application.route('/')
+def profile():
+	return render_template("profile.html")
+  
+  
+@application.route('/dashboard')
 def dashboard():
-  return render_template('dashboard.html')
-
+	return render_template("dashboard.html")
+	
 @application.route('/unlock')
 def unlock():
-    return render_template("unlock.html")
-
+	return render_template("unlock.html")
+	
 @application.route('/upload')
 def upload():
-    return render_template("upload.html")
-
+	return render_template("upload.html")
+	
 @application.route('/account')
 def account():
-    return render_template("account.html")
-'''
-  access_token = session.get('access_token')
-  if access_token is None:
-    return redirect(url_for('profile'))
-  access_token = access_token[0]
-  from urllib2 import Request, urlopen, URLError
-  headers = {'Authorization': 'OAuth ' + access_token}
-  req = Request('https://www.googleapis.com/oauth2/v1/userinfo', None, headers)
-
-  try:
-    res = urlopen(req)
-  except URLError as e: 
-    if e.code == 401:
-      #bad token
-      session.pop('access_token', None)
-      return redirect(url_for('profile'))
-    return res.read()
-  '''
+	return render_template("account.html")
+		
+# run the app.
 if __name__ == "__main__":
     # Setting debug to True enables debug output. This line should be
     # removed before deploying a production app.
