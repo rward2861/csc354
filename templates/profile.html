@@ -7,8 +7,16 @@
 	  <link href = "https://fonts.googleapis.com/css?family=Raleway" rel = "stylesheet">
 	  <link rel = "stylesheet" type = "text/css" href = "{{ url_for('static', filename= 'CSS.css')}}">
 	  <link rel = "stylesheet" href = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	  
+	  <!-- Link To Dashboard --> 
+	  <strong><nav>
+		<li><a href="{{url_for('profile') }}">Home</a></li>
+		<li><a href="{{url_for('dashboard') }}">Dashboard</a></li>
+	  </nav></strong>
+	  
 	  <!-- Gradient background -->
 	  <body background = "{{url_for('static', filename = 'img/bg.png')}}">
+
 	  	<br><br>
 	  <!-- Title at top -->
 	  <h1><center><text2>Welcome to FiPi</text2></center></h1>
