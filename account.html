@@ -1,10 +1,11 @@
 <!----------------------------------------------------------------------------------------------------
 --- Created By:         Team FiPi                                                                  ---
 --- Date:               Spring 2017 - Fall 2018                                                    ---
---- Purpose:            Dashboard UI for facial recognition app. Displays the name of the user     ---
----                     pulled from Google API and the status of the lock box.                     ---
+--- Purpose:            Account UI for facial recognition app. Allows user to view account         ---
+---                     information pulled from Google API and view the photo repository.          ---
 ---                     Links include:                                                             ---
----                       Account: Access account info and view the photo depository.              ---
+---                       Dashboard: Displays the name of the user pulled from Google API          ---
+---                                  and the status of the lock box.                               ---
 ---                     Buttons include:                                                           ---
 ---                       Upload: Allows user to upload photos into the repository.                ---
 ---                       Unlock: Allows user to attempt to unlock the box with a live photo.      ---
@@ -20,7 +21,7 @@
   <body background = "{{url_for('static', filename = 'img/bg.png')}}">
    
   <!-- Tab name -->
-  <title>FiPi Dashboard</title>
+  <title>FiPi Account</title>
   
   <!-- References to style sheets -->
   <link rel = "stylesheet" type = "text/css" href = "{{ url_for('static', filename= 'css/css.css')}}">
@@ -28,17 +29,15 @@
 
   <!-- Vertical navigation bar -->
   <ul><txt><h3>
-  <li><center><img src = " {{ url_for('static', filename= 'img/LogoPic2.PNG')}}" style = "width: 75px; height: 87px;"></center><br>
-  <div class = "active"><b>Welcome to FiPi</b></div></li> 
-  <li><a href="{{url_for('account') }}">Account</a></li><br><br><br>
+  <li><center><img src = " {{ url_for('static', filename= 'img/LogoPic2.PNG')}}" style = "width: 75px; height: 87px;"></center></li><br>
+  <li><a href="{{url_for('dashboard') }}">Welcome to FiPi</a></li> 
+  <li><div class = "active"><b>Account</b></div></li>
+  <br><br><br>
+
   <li><center><butt><span onclick = "window.location.href='{{ url_for( 'upload' ) }}';">Upload</span></butt></center></li><br><b>
   <li><center><butt><span onclick = "window.location.href='{{ url_for( 'unlock' ) }}';">Unlock</span></butt></center></li>
   </ul>
   
-  <!-- <meta charset="utf-8">
-  <meta content="Display Webcam Stream" name="title"> -->
-  <body>
-
   <!-- Middle text box -->
   <br>
   <div style = "margin-left: 28%;">
@@ -50,41 +49,7 @@
 
   <h1><gen>Welcome User</gen></h1></div>
   <div style = "margin-left:25%; padding:1px 16px; height:1000px;">
-  <txt><h3><p id = "rcorners">Dashboard:<br><br><br>
-  Here will be displayed the name of the user pulled from Google API
-  and the status of the lock box.
-    <style>
-  #container {
-    margin: 0px auto;
-    width: 500px;
-    height: 375px;
-    border: 10px #333 solid;
-  }
-#videoElement {
-    width: 500px;
-    height: 375px;
-    background-color: #666;
-  }
-</style>
-<div id="container">
-    <video autoplay="true" id="videoElement">
-     
-    </video>
-</div>
-<script>
-  var video = document.querySelector("#videoElement");
-  if (navigator.mediaDevices.getUserMedia) {
-      navigator.mediaDevices.getUserMedia({video: true})
-    .then(function(stream){
-      video.srcObject = stream;
-    })
-    .catch(function(err0r){
-      console.log("Unable to display webcam..");
-    })
-  }
- 
-</script>
-  </p></h3></txt></div>
+  <txt><h3><p id = "rcorners">Account & Photo Repository:<br><br><br>
+  Here will be account information and stored photos for test data.</p></h3></txt></div>
   </div>
- </body> 
 </html>
