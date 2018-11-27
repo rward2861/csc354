@@ -10,8 +10,8 @@
 	  
 	  <!-- Link To Dashboard --> 
 	  <strong><nav>
-		<li><a href="{{url_for('profile') }}">Home</a></li>
-		<li><a href="{{url_for('dashboard') }}">Dashboard</a></li>
+		<a href="{{url_for('profile') }}">Home</a>
+		<a href="{{url_for('dashboard') }}">Dashboard</a>
 	  </nav></strong>
 	  
 	  <!-- Gradient background -->
@@ -47,8 +47,15 @@
 			console.log("Email: " + profile.getEmail());
 			// The ID token you need to pass to your backend:
 			var id_token = googleUser.getAuthResponse().id_token;
-			console.log("ID Token: " + id_token);
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'https://trial1.mdfpy9udmx.us-east-2.elasticbeanstalk.com/dashboard/tokensignin%27);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onload = function() {
+              console.log('Signed in as: ' + xhr.responseText);
+            };
+            xhr.send('idtoken=' + id_token);
 		  };
+		  </script>
 		<a href="#" onclick="signOut();">Sign out</a>
         <script>
           function signOut() {
@@ -57,7 +64,7 @@
               console.log('User signed out.');
             });
           }
-        </script>
+        
 		</script>
 	  </center>
 	 </body>
