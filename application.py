@@ -1,50 +1,37 @@
-from flask import Flask, redirect, url_for, session, render_template
-
+from flask import Flask, render_template, url_for, request
+from flask_uploads import UploadSet, configure_uploads, IMAGES
 application = Flask(__name__)
 
-#@application.route('/')
-#def profile():
-##  access_token = session.get('access_token')
-#  if access_token is None:
-#  return render_template('profile.html')
-#  else:
-#    return render_template('dashboard.html')
+photos = UploadSet('photos', IMAGES)
+
+application.config['UPLOADED_PHOTOS_DEST'] = './training-data/s4'
+configure_uploads(application, photos)
 
 @application.route('/')
+def profile():
+  return render_template("profile.html")
+  
+  
+@application.route('/dashboard')
 def dashboard():
-  return render_template('dashboard.html')
-
+  return render_template("dashboard.html")
+  
 @application.route('/unlock')
 def unlock():
-    return render_template("unlock.html")
-
-@application.route('/upload')
-def upload():
-    return render_template("upload.html")
-
+  return render_template("unlock.html")
+  
 @application.route('/account')
 def account():
-    return render_template("account.html")
-'''
-  access_token = session.get('access_token')
-  if access_token is None:
-    return redirect(url_for('profile'))
-  access_token = access_token[0]
-  from urllib2 import Request, urlopen, URLError
-  headers = {'Authorization': 'OAuth ' + access_token}
-  req = Request('https://www.googleapis.com/oauth2/v1/userinfo', None, headers)
+  return render_template("account.html")
+  
+@application.route('/uploads', methods=['GET', 'POST'])
+def upload():
+  if request.method == 'POST' and 'photo' in request.files:
+    filename = photos.save(request.files['photo'])
+    return render_template("dashboard.html")
+  return render_template('dashboard.html')  
+  
 
-  try:
-    res = urlopen(req)
-  except URLError as e: 
-    if e.code == 401:
-      #bad token
-      session.pop('access_token', None)
-      return redirect(url_for('profile'))
-    return res.read()
-  '''
 if __name__ == "__main__":
-    # Setting debug to True enables debug output. This line should be
-    # removed before deploying a production app.
     application.debug = True
     application.run()
