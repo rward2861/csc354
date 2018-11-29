@@ -21,40 +21,19 @@
   - OpenCV provides two classifiers: Haar Classifier (machine learning approach, windows are placed on each picture to calculate a single feature)
     and LBP Classifier 
 """
+import socket
+import threading
+import sys, os
 import cv2
 import os 
 import numpy as np
 import time 
 import matplotlib.pyplot as plt
+import detect_face
+import config
 
 #there is no label 0 in our training data so subject name for index/label 0 is empty
-subjects = ["", "Richie", "Janeel", "Enrique Iglesias"]
-
-
-
-#function to detect face using OpenCV
-def find_faces(img):
-    #convert the test image to gray image as opencv face detector expects gray images
-    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    
-    #load OpenCV face detector, I am using LBP which is fast
-    #there is also a more accurate but slow Haar classifier
-    face_cascade = cv2.CascadeClassifier('opencv/sources/data/lbpcascades/lbpcascade_frontalface.xml')
-
-    #let's detect multiscale (some images may be closer to camera than others) images
-    #result is a list of faces
-    faces = face_cascade.detectMultiScale(gray, scaleFactor=1.2, minNeighbors=5);
-    
-    #if no faces are detected then return original img
-    if (len(faces) == 0):
-        return None, None
-    
-    #under the assumption that there will be only one face,
-    #extract the face area
-    (x, y, w, h) = faces[0]
-    
-    #return only the face part of the image
-    return gray[y:y+w, x:x+h], faces[0]
+subjects = ["", "Janeel", "Eric", "Steph"]
 
 
 #this function will read all persons' training images, detect face from each image
@@ -62,7 +41,6 @@ def find_faces(img):
 # of faces and another list of labels for each face
 def prepare_training_data(data_folder_path):
     
-    #------STEP-1--------
     #get the directories (one directory for each subject) in data folder
     dirs = os.listdir(data_folder_path)
     
@@ -79,7 +57,6 @@ def prepare_training_data(data_folder_path):
         if not dir_name.startswith("s"):
             continue;
             
-        #------STEP-2--------
         #extract label number of subject from dir_name
         #format of dir name = slabel
         #, so removing letter 's' from dir_name will give us label
@@ -92,7 +69,6 @@ def prepare_training_data(data_folder_path):
         #get the images names that are inside the given subject directory
         subject_images_names = os.listdir(subject_dir_path)
         
-        #------STEP-3--------
         #go through each image name, read image, 
         #detect face and add face to list of faces
         for image_name in subject_images_names:
@@ -108,12 +84,12 @@ def prepare_training_data(data_folder_path):
             #read image
             image = cv2.imread(image_path)
             
-            #display an image window to show the image 
+            #display an image window to show the image
             cv2.imshow("Training on image...", cv2.resize(image, (400, 500)))
             cv2.waitKey(10)
             
             #detect face
-            face, rect = find_faces(image)
+            face, rect = detect_face.find_faces(image)
 
             #ignore if no faces are present
             if face is not None:
@@ -129,15 +105,11 @@ def prepare_training_data(data_folder_path):
     return faces, labels
 
 
-#let's first prepare our training data
-#data will be in two lists of same size
-#one list will contain all the faces
-#and other list will contain respective labels for each face
-print("Preparing data...")
+print("Preparing data from training file...")
 faces, labels = prepare_training_data("training-data")
 print("Data prepared")
 
-#print total faces and labels
+
 print("Total faces: ", len(faces))
 print("Total labels: ", len(labels))
 
@@ -145,11 +117,6 @@ print("Total labels: ", len(labels))
 #create our LBPH face recognizer 
 face_recognizer = cv2.face.LBPHFaceRecognizer_create()
 
-#or use EigenFaceRecognizer by replacing above line with 
-#face_recognizer = cv2.face.EigenFaceRecognizer_create()
-
-#or use FisherFaceRecognizer by replacing above line with 
-#face_recognizer = cv2.face.FisherFaceRecognizer_create()
 
 #train our face recognizer of our training faces
 face_recognizer.train(faces, np.array(labels))
@@ -159,22 +126,20 @@ face_recognizer.train(faces, np.array(labels))
 #given width and heigh
 def draw_rectangle(img, rect):
     (x, y, w, h) = rect
-    cv2.rectangle(img, (x, y), (x+w, y+h), (0, 255, 0), 2)
+    cv2.rectangle(img, (x, y), (x+w, y+h), (255, 255, 0), 2)
     
 #function to draw text on give image starting from
 #passed (x, y) coordinates. 
 def draw_text(img, text, x, y):
-    cv2.putText(img, text, (x, y), cv2.FONT_HERSHEY_PLAIN, 1.5, (0, 255, 0), 2)
+    cv2.putText(img, text, (x, y), cv2.FONT_HERSHEY_TRIPLEX, 2, (255, 255, 0), 2)
 
 
-#this function recognizes the person in image passed
-#and draws a rectangle around detected face with name of the 
-#subject
+#recognize individual and draw rectangle around face
 def predict(test_img):
     #make a copy of the image as we don't want to chang original image
     img = test_img.copy()
     #detect face from the image
-    face, rect = find_faces(test_img)
+    face, rect = detect_face.find_faces(test_img)
 
     #predict the image using our face recognizer 
     label, confidence = face_recognizer.predict(face)
@@ -188,9 +153,6 @@ def predict(test_img):
     
     return img
 
-# Now that we have the prediction function well defined, next step is to actually call this function on our test images and display those test images to see if our face recognizer correctly recognized them. So let's do it. This is what we have been waiting for. 
-
-# In[10]:
 
 print("Predicting images...")
 
@@ -204,11 +166,41 @@ predicted_img2 = predict(test_img2)
 predicted_img3 = predict(test_img3)
 print("Prediction complete")
 
-#display both images
-cv2.imshow(subjects[1], cv2.resize(predicted_img1, (400, 500)))
-cv2.imshow(subjects[2], cv2.resize(predicted_img2, (400, 500)))
-cv2.imshow(subjects[3], cv2.resize(predicted_img3, (400, 500)))
+
+while subjects[3]:
+    if subjects[1] == "Janeel":
+        print (subjects[1] + " is an authorized user!")
+        cv2.imshow(subjects[1], cv2.resize(predicted_img1, (400, 500)))
+        print ("Sending signal to Pi.. ")
+        #cv2.imshow(subjects[1], cv2.resize(predicted_img1, (400, 500)))
+        #socket communication
+        ipaddress = '169.254.208.93'
+        port = 35300
+        IPaddr = socket.gethostbyname(ipaddress)
+        message = 'READY'
+        buffersize = 1024
+        serverInfo = ((IPaddr, port))
+        try:
+            clientSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            clientSocket.connect(serverInfo)
+            print ('Almost there..')
+        except socket.error as err:
+            print('Socket connection error:', err)
+            sys.exit()
+        try:
+            clientSocket.send(message.encode())
+            print('Signal sent successfully!')
+        except MsgError as e:
+            print('Looks like we werent able to do it.. Sorry')
+        clientSocket.close() 
+        break   
+        
+    else:
+        print (subjects[1] + " is a Non-Authorized User.")
+        cv2.imshow(subjects[1], cv2.resize(predicted_img1, (400, 500)))
+        break
 cv2.waitKey(0)
 cv2.destroyAllWindows()
 cv2.waitKey(1)
 cv2.destroyAllWindows()
+
