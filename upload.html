@@ -1,0 +1,51 @@
+<!----------------------------------------------------------------------------------------------------
+--- Created By:         Team FiPi                                                                  ---
+--- Date:               Spring 2017 - Fall 2018                                                    ---
+--- Purpose:            Upload UI for facial recognition app. Allows user to upload photos into    ---
+---                     the repository.                                                            ---
+---                     Links include:                                                             ---
+---                       Dashboard: Displays the name of the user pulled from Google API          ---
+---                                  and the status of the lock box.                               ---
+---                       Account: Access account info and view the photo depository.              ---
+---                     Buttons include:                                                           ---
+---                       Unlock: Allows user to attempt to unlock the box with a live photo.      ---
+----------------------------------------------------------------------------------------------------->
+
+<?php
+  session_start();
+  ?>
+	
+<!DOCTYPE html>
+<html>
+  <!-- Gradient background -->
+  <body background = "{{url_for('static', filename = 'img/bg.png')}}">
+   
+  <!-- Tab name -->
+  <title>FiPi Upload</title>
+  
+  <!-- References to style sheets -->
+  <link rel = "stylesheet" type = "text/css" href = "{{ url_for('static', filename= 'css/css2.css')}}">
+  <link rel = "stylesheet" href = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+  <!-- Vertical navigation bar -->
+  <ul><txt><h3>
+  <li><center><img src = " {{ url_for('static', filename= 'img/LogoPic2.PNG')}}" style = "width: 75px; height: 87px;"></center></li><br>
+  <li><a href="{{url_for('dashboard') }}">Welcome to FiPi</a></li>
+  <li><a href="{{url_for('account') }}">Account</a></li><br><br><br>
+  <li><center><butt><span onclick = "window.location.href='{{ url_for( 'upload' ) }}';">Upload</span></butt></center></li><br><b>
+  <li><center><butt><span onclick = "window.location.href='{{ url_for( 'unlock' ) }}';">Unlock</span></butt></center></li>
+  <li><b><center>
+  </ul>
+  
+  <!-- Middle text box -->
+  <br>
+  <div style = "margin-left: 28%;">
+  <h1><gen>Welcome User</gen></h1></div>
+  <div style = "margin-left:25%; padding:1px 16px; height:1000px;">
+  <txt><h3><p id = "rcorners">Upload Photos:<br><br><br>
+  Click the <i>Choose File</i> button to select photos to upload to the training data repository.</p></h3></txt>
+  <div style = "margin-left: 4%;"><form method=POST enctype=multipart/form-data action="{{ url_for('upload') }}">
+      <input type=file name=photo>
+      <input type="submit">
+  </form></div></div>
+</html>
