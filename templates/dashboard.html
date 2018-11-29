@@ -23,7 +23,7 @@
   <title>FiPi Dashboard</title>
   
   <!-- References to style sheets -->
-  <link rel = "stylesheet" type = "text/css" href = "{{ url_for('static', filename= 'css/css.css')}}">
+  <link rel = "stylesheet" type = "text/css" href = "{{ url_for('static', filename= 'css.css')}}">
   <link rel = "stylesheet" href = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
   <!-- Vertical navigation bar -->
@@ -38,18 +38,13 @@
   <!-- <meta charset="utf-8">
   <meta content="Display Webcam Stream" name="title"> -->
   <body>
-		<form method=POST enctype=multipart/form-data action="{{ url_for('upload') }}">
-			<input type=file name=photo>
-			<input type="submit">
-		</form>
+    <form method=POST enctype=multipart/form-data action="{{ url_for('upload') }}">
+      <input type=file name=photo>
+      <input type="submit">
+    </form>
   <!-- Middle text box -->
   <br>
   <div style = "margin-left: 28%;">
-
-  <?php
-    //$_SESSION["User"] = profile.getId();
-    //echo "Welcome";
-    ?>
 
   <h1><gen>Welcome User</gen></h1></div>
   <div style = "margin-left:25%; padding:1px 16px; height:1000px;">
