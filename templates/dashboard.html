@@ -10,10 +10,6 @@
 ---                       Unlock: Allows user to attempt to unlock the box with a live photo.      ---
 ----------------------------------------------------------------------------------------------------->
 
-<?php
-  session_start();
-  ?>
-  
 <!DOCTYPE html>
 <html>
   <!-- Gradient background -->
@@ -23,7 +19,7 @@
   <title>FiPi Dashboard</title>
   
   <!-- References to style sheets -->
-  <link rel = "stylesheet" type = "text/css" href = "{{ url_for('static', filename= 'css.css')}}">
+  <link rel = "stylesheet" type = "text/css" href = "{{ url_for('static', filename= 'css/css.css')}}">
   <link rel = "stylesheet" href = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
   <!-- Vertical navigation bar -->
@@ -34,55 +30,33 @@
   <li><center><butt><span onclick = "window.location.href='{{ url_for( 'upload' ) }}';">Upload</span></butt></center></li><br><b>
   <li><center><butt><span onclick = "window.location.href='{{ url_for( 'unlock' ) }}';">Unlock</span></butt></center></li>
   </ul>
-  
-  <!-- <meta charset="utf-8">
-  <meta content="Display Webcam Stream" name="title"> -->
+
   <body>
-    <form method=POST enctype=multipart/form-data action="{{ url_for('upload') }}">
-      <input type=file name=photo>
-      <input type="submit">
-    </form>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name = "google-signin-scope" content = "profile email">
+    <meta name = "google-signin-client_id" content = "470743064073-ork5vou2ltmkro39586cc9kbsvn3ch4n.apps.googleusercontent.com">
+    <script src = "https://apis.google.com/js/platform.js" async defer></script>
+    <div class = "g-signin2" data-onsuccess = "onSignIn" hidden="true"></div>
   <!-- Middle text box -->
   <br>
   <div style = "margin-left: 28%;">
-
+ 
   <h1><gen>Welcome User</gen></h1></div>
   <div style = "margin-left:25%; padding:1px 16px; height:1000px;">
   <txt><h3><p id = "rcorners">Dashboard:<br><br><br>
   Here will be displayed the name of the user pulled from Google API
-  and the status of the lock box.
-    <style>
-  #container {
-    margin: 0px auto;
-    width: 500px;
-    height: 375px;
-    border: 10px #333 solid;
-  }
-#videoElement {
-    width: 500px;
-    height: 375px;
-    background-color: #666;
-  }
-</style>
-<div id="container">
-    <video autoplay="true" id="videoElement">
-     
-    </video>
-</div>
-<script>
-  var video = document.querySelector("#videoElement");
-  if (navigator.mediaDevices.getUserMedia) {
-      navigator.mediaDevices.getUserMedia({video: true})
-    .then(function(stream){
-      video.srcObject = stream;
-    })
-    .catch(function(err0r){
-      console.log("Unable to display webcam..");
-    })
-  }
- 
-</script>
-  </p></h3></txt></div>
-  </div>
+  and the status of the lock box.</p></h3></txt>
+  
+    <a href="#" onclick="signOut();">Sign out</a>
+    <script>
+      function signOut() {
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+          console.log('User signed out.');
+          window.location.href='{{ url_for( 'profile' ) }}';
+        });
+      }
+    </script></div>
  </body> 
+
 </html>
