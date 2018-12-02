@@ -19,7 +19,9 @@ Now that you have the prerequisites taken care of, the installation description 
   - IMPORTANT: when creating an enviornment with eb init -i, MAKE SURE TO SAVE YOUR KEYPAIR ONCE CREATED.  This will be required in step 5c.
 2) Once eb-flask, virtualenv, and eb cli are installed and saved into your requirements.txt, you are now able to start coding.  In order to start this in a Flask application, you must create an application.py file and pull the file present in this github repository.  This file will route to the subsequent files that make this project.  
 3) Go to https://console.developers.google.com/apis/ and create a new project.  Once this is done, navigate to credentials -> create credentials -> OAuth Client ID.
-  - This is where you will get the client ID (that must be put into your login.html page in order to use Google OAuth for sign in.
+**** GOOGLE SIGN IN ONLY WORKS ON AWS, THIS WILL NOT WORK ON LOCALHOST ****
+
+  - This is where you will get the client ID (that must be put into your profile.html page in order to use Google OAuth for sign in.
   - You will also need to specify your Javascript origins and redirect URIs after selecting "Web Application."
 4) Once the console is set up, navigate to https://developers.google.com/identity/sign-in/web/sign-in in order to find how the Google signin button is created.  Troubleshooting can also be done on this page, along with getting profile information once the user is logged in (https://developers.google.com/identity/sign-in/web/people).
 5) Run a "pip install flask-uploads" and then "pip freeze > requirements.txt" in order to include the flask_uploads library in your application.py file for uploading photos.  
