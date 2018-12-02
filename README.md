@@ -1,6 +1,6 @@
 # FiPi Web Application
 
-The FiPi Web Application is a senior seminar project that functions as an alternative method for storing and securing valuable items.  The project itself encompases the functionalities built-in with OpenCV's facial recognition software (LBPH) in order to create a smart lock that uses a Raspberry Pi to unlock a treasure box.  Please see below for installation guidelines.
+The FiPi Web Application is a senior seminar project that functions as an alternative method for storing and securing valuable items.  The project itself encompasses the functionalities built-in with OpenCV's facial recognition software (LBPH) in order to create a smart lock that uses a Raspberry Pi to unlock a treasure box.  Please see below for installation guidelines.
 
 # Pre Installation:
 
