@@ -6,7 +6,7 @@ The FiPi Web Application is a senior seminar project that functions as an altern
 
 In order to recreate this project, you must have the following prerequisites:
 
-1) Have an AWS account - this can be free tier elegability
+1) Have an AWS account - this can be free tier elligibility
 2) Have a Google account
 3) Have Python 3.6 (or newer) installed on your local machine
 4) Have the latest OpenCV downloaded onto your computer (https://opencv.org/releases.html)
