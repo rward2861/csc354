@@ -30,7 +30,6 @@ import numpy as np
 import time 
 import matplotlib.pyplot as plt
 import detect_face
-import config
 
 #there is no label 0 in our training data so subject name for index/label 0 is empty
 subjects = ["", "Janeel", "Eric", "Steph"]
