@@ -11,7 +11,7 @@ In order to recreate this project, you must have the following prerequisites:
 3) Have Python 3.6 (or newer) installed on your local machine
 4) Have the latest OpenCV downloaded onto your computer (https://opencv.org/releases.html)
 
-# Installation:
+# Installation (Web Application and Facial Recognition):
 
 Now that you have the prerequisites taken care of, the installation description follows.  
 
@@ -36,3 +36,7 @@ Now that you have the prerequisites taken care of, the installation description 
 6) Copy over the files in this repository.
 7) To test locally, run python application.py and go to http://127.0.0.1:5000.
 8) Now that everything is taken cared of on the web side, we will start the setup for the Raspberry Pi.
+
+# Installation (Raspberry Pi)
+
+
