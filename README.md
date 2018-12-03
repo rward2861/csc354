@@ -9,6 +9,7 @@ In order to recreate this project, you must have the following prerequisites:
 1) Have an AWS account - this can be free tier elegability
 2) Have a Google account
 3) Have Python 3.6 (or newer) installed on your local machine
+4) Have the latest OpenCV downloaded onto your computer (https://opencv.org/releases.html)
 
 # Installation:
 
@@ -32,4 +33,6 @@ Now that you have the prerequisites taken care of, the installation description 
 5c) You will now need SSH access to your application.  Download PuTTY for this.  You will need to use PuTTYgen to create a private key.  See this link for a walkthrough: https://www.youtube.com/watch?v=bi7ow5NGC-U.
   - optional: you can either use the hostname of your Route 53 domain OR elastic beanstalk instance if you set up an Elastic IP (recommended).  This allows multiple elastic beanstalk instances to assume the same Elastic IP when terminated
 
-6) 
+6) Copy over the files in this repository.
+7) To test locally, run python application.py and go to http://127.0.0.1:5000.
+8) Now that everything is taken cared of on the web side, we will start the setup for the Raspberry Pi.
