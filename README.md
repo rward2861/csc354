@@ -39,4 +39,16 @@ Now that you have the prerequisites taken care of, the installation description 
 
 # Installation (Raspberry Pi)
 
+Pre-Installation and Installation (Raspberry Pi):
+1)	 Have Python 3.6 (or newer) installed on your local machine.
+  -	Sudo apt-get install python-pip
+  -	Sudo apt-get install python-dev
+2)	Have RPIO installed.
+  -	Sudo pip install rpio
+3)	Have an ethernet cable to hook up with laptop (this is used to circumvent firewall issues when connected on wlan0 (wifi)).
+  -	Make sure you use the IP address provided under eth0 (ethernet) when plugging in IP address for socket communication!
+4)	Connect Raspberry Pi breadboard cables as follows (further explanation of a similar setup can be found on hackster.io, along with       all necessary materials (https://www.hackster.io/secured-pi/facial-recognition-rfid-lock-with-raspberry-pi-e81f98) 
+5)	Make sure that the server code for the Pi has been grabbed and saved locally.
+6)	Start fr_server.py on the Pi and facial_recognition.py on your desktop.
+7)	Congratulations- you have recreated our senior project! 
 
