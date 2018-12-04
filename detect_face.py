@@ -1,3 +1,7 @@
+"""
+  Source worked off of for code: https://www.superdatascience.com/opencv-face-recognition/
+  and Team FiPi
+"""
 import cv2
 
 #function to detect face using OpenCV
